@@ -1,0 +1,922 @@
+{
+    "auto_start": false,
+    "name": "projetb3_infrastructure",
+    "project_id": "4032f819-37a7-4b61-b0c1-a10e8e3019ec",
+    "revision": 4,
+    "topology": {
+        "links": [
+            {
+                "description": "Link from Internet port nio_tap:tap0 to hub_internet port 1",
+                "destination_node_id": 6,
+                "destination_port_id": 26,
+                "id": 1,
+                "source_node_id": 1,
+                "source_port_id": 1
+            },
+            {
+                "description": "Link from fw_router_lesquin port em0 to hub_internet port 2",
+                "destination_node_id": 6,
+                "destination_port_id": 34,
+                "id": 2,
+                "source_node_id": 3,
+                "source_port_id": 41
+            },
+            {
+                "description": "Link from sw_production port 1 to fw_router_lesquin port em2",
+                "destination_node_id": 3,
+                "destination_port_id": 43,
+                "id": 4,
+                "source_node_id": 8,
+                "source_port_id": 53
+            },
+            {
+                "description": "Link from sw_partenaires port 1 to fw_router_lesquin port em3",
+                "destination_node_id": 3,
+                "destination_port_id": 44,
+                "id": 5,
+                "source_node_id": 9,
+                "source_port_id": 61
+            },
+            {
+                "description": "Link from pc_directeurlesquin port Ethernet0 to sw_administratif port 2",
+                "destination_node_id": 7,
+                "destination_port_id": 46,
+                "id": 6,
+                "source_node_id": 10,
+                "source_port_id": 69
+            },
+            {
+                "description": "Link from Internet port nio_tap:tap1 to MAINTENANCE_PFSENSE port 2",
+                "destination_node_id": 11,
+                "destination_port_id": 71,
+                "id": 8,
+                "source_node_id": 1,
+                "source_port_id": 78
+            },
+            {
+                "description": "Link from MAINTENANCE_PFSENSE port 1 to sw_administratif port 8",
+                "destination_node_id": 7,
+                "destination_port_id": 52,
+                "id": 9,
+                "source_node_id": 11,
+                "source_port_id": 70
+            },
+            {
+                "description": "Link from sw_administratif port 1 to fw_router_lesquin port em1",
+                "destination_node_id": 3,
+                "destination_port_id": 42,
+                "id": 10,
+                "source_node_id": 7,
+                "source_port_id": 45
+            }
+        ],
+        "nodes": [
+            {
+                "description": "Cloud",
+                "id": 1,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "Internet",
+                    "x": 45.6171875,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "description": "connected to hub_internet on port 1",
+                        "id": 1,
+                        "link_id": 1,
+                        "name": "nio_tap:tap0",
+                        "nio": "NIO_TAP",
+                        "stub": true
+                    },
+                    {
+                        "description": "connected to MAINTENANCE_PFSENSE on port 2",
+                        "id": 78,
+                        "link_id": 8,
+                        "name": "nio_tap:tap1",
+                        "nio": "NIO_TAP",
+                        "stub": true
+                    }
+                ],
+                "properties": {
+                    "name": "Internet",
+                    "nios": [
+                        "nio_tap:tap1",
+                        "nio_tap:tap0"
+                    ]
+                },
+                "server_id": 1,
+                "type": "Cloud",
+                "x": -77.5,
+                "y": 229.0
+            },
+            {
+                "description": "QEMU VM",
+                "id": 2,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "fw_router_dc",
+                    "x": -17.8203125,
+                    "y": -25.0
+                },
+                "linked_clone": true,
+                "port_name_format": "em{0}",
+                "ports": [
+                    {
+                        "adapter_number": 0,
+                        "id": 2,
+                        "name": "em0",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 1,
+                        "id": 3,
+                        "name": "em1",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 2,
+                        "id": 4,
+                        "name": "em2",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 3,
+                        "id": 5,
+                        "name": "em3",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 4,
+                        "id": 6,
+                        "name": "em4",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 5,
+                        "id": 7,
+                        "name": "em5",
+                        "port_number": 0
+                    }
+                ],
+                "properties": {
+                    "acpi_shutdown": false,
+                    "adapter_type": "e1000",
+                    "adapters": 6,
+                    "boot_priority": "c",
+                    "console": 5002,
+                    "console_type": "telnet",
+                    "cpu_throttling": 0,
+                    "cpus": 1,
+                    "hda_disk_image": "pfSense-CE-2.3.2-RELEASE-2g-amd64-nanobsd.img",
+                    "hda_disk_image_md5sum": "c91f2c8e287f4930695e65a6793cb8fe",
+                    "hda_disk_interface": "ide",
+                    "hdb_disk_interface": "ide",
+                    "hdc_disk_interface": "ide",
+                    "hdd_disk_interface": "ide",
+                    "legacy_networking": false,
+                    "mac_address": "00:19:ec:a8:54:00",
+                    "name": "fw_router_dc",
+                    "options": "-nographic",
+                    "platform": "x86_64",
+                    "process_priority": "normal",
+                    "qemu_path": "/usr/bin/qemu-system-x86_64",
+                    "ram": 2048
+                },
+                "server_id": 1,
+                "symbol": ":/symbols/firewall.svg",
+                "type": "QemuVM",
+                "vm_id": "9f087f9f-587d-402e-8103-cb1e1f0ea854",
+                "x": 75.0,
+                "y": 76.0
+            },
+            {
+                "description": "QEMU VM",
+                "id": 3,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "fw_router_lesquin",
+                    "x": -35.9453125,
+                    "y": -25.0
+                },
+                "linked_clone": true,
+                "port_name_format": "em{0}",
+                "ports": [
+                    {
+                        "adapter_number": 0,
+                        "description": "connected to hub_internet on port 2",
+                        "id": 41,
+                        "link_id": 2,
+                        "name": "em0",
+                        "nio": "NIO_UDP",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 1,
+                        "description": "connected to sw_administratif on port 1",
+                        "id": 42,
+                        "link_id": 10,
+                        "name": "em1",
+                        "nio": "NIO_UDP",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 2,
+                        "description": "connected to sw_production on port 1",
+                        "id": 43,
+                        "link_id": 4,
+                        "name": "em2",
+                        "nio": "NIO_UDP",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 3,
+                        "description": "connected to sw_partenaires on port 1",
+                        "id": 44,
+                        "link_id": 5,
+                        "name": "em3",
+                        "nio": "NIO_UDP",
+                        "port_number": 0
+                    }
+                ],
+                "properties": {
+                    "acpi_shutdown": false,
+                    "adapter_type": "e1000",
+                    "adapters": 4,
+                    "boot_priority": "c",
+                    "console": 5003,
+                    "console_type": "telnet",
+                    "cpu_throttling": 0,
+                    "cpus": 1,
+                    "hda_disk_image": "pfSense-CE-2.3.2-RELEASE-2g-amd64-nanobsd.img",
+                    "hda_disk_image_md5sum": "c91f2c8e287f4930695e65a6793cb8fe",
+                    "hda_disk_interface": "ide",
+                    "hdb_disk_interface": "ide",
+                    "hdc_disk_interface": "ide",
+                    "hdd_disk_interface": "ide",
+                    "legacy_networking": false,
+                    "mac_address": "00:19:ec:67:c1:00",
+                    "name": "fw_router_lesquin",
+                    "options": "-nographic",
+                    "platform": "x86_64",
+                    "process_priority": "normal",
+                    "qemu_path": "/usr/bin/qemu-system-x86_64",
+                    "ram": 2048
+                },
+                "server_id": 1,
+                "symbol": ":/symbols/firewall.svg",
+                "type": "QemuVM",
+                "vm_id": "1dde50da-3529-4358-9855-32ffb5e167c1",
+                "x": -93.0,
+                "y": 77.0
+            },
+            {
+                "description": "QEMU VM",
+                "id": 4,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "fw_router_rennes",
+                    "x": -34.453125,
+                    "y": -25.0
+                },
+                "linked_clone": true,
+                "port_name_format": "em{0}",
+                "ports": [
+                    {
+                        "adapter_number": 0,
+                        "id": 14,
+                        "name": "em0",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 1,
+                        "id": 15,
+                        "name": "em1",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 2,
+                        "id": 16,
+                        "name": "em2",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 3,
+                        "id": 17,
+                        "name": "em3",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 4,
+                        "id": 18,
+                        "name": "em4",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 5,
+                        "id": 19,
+                        "name": "em5",
+                        "port_number": 0
+                    }
+                ],
+                "properties": {
+                    "acpi_shutdown": false,
+                    "adapter_type": "e1000",
+                    "adapters": 6,
+                    "boot_priority": "c",
+                    "console": 5004,
+                    "console_type": "telnet",
+                    "cpu_throttling": 0,
+                    "cpus": 1,
+                    "hda_disk_image": "pfSense-CE-2.3.2-RELEASE-2g-amd64-nanobsd.img",
+                    "hda_disk_image_md5sum": "c91f2c8e287f4930695e65a6793cb8fe",
+                    "hda_disk_interface": "ide",
+                    "hdb_disk_interface": "ide",
+                    "hdc_disk_interface": "ide",
+                    "hdd_disk_interface": "ide",
+                    "legacy_networking": false,
+                    "mac_address": "00:19:ec:f9:25:00",
+                    "name": "fw_router_rennes",
+                    "options": "-nographic",
+                    "platform": "x86_64",
+                    "process_priority": "normal",
+                    "qemu_path": "/usr/bin/qemu-system-x86_64",
+                    "ram": 2048
+                },
+                "server_id": 1,
+                "symbol": ":/symbols/firewall.svg",
+                "type": "QemuVM",
+                "vm_id": "63eb5a72-5ee0-4d7f-abf7-89d0da15f925",
+                "x": -122.0,
+                "y": 417.0
+            },
+            {
+                "description": "QEMU VM",
+                "id": 5,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "fw_router_lyon",
+                    "x": -24.8671875,
+                    "y": -25.0
+                },
+                "linked_clone": true,
+                "port_name_format": "em{0}",
+                "ports": [
+                    {
+                        "adapter_number": 0,
+                        "id": 20,
+                        "name": "em0",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 1,
+                        "id": 21,
+                        "name": "em1",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 2,
+                        "id": 22,
+                        "name": "em2",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 3,
+                        "id": 23,
+                        "name": "em3",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 4,
+                        "id": 24,
+                        "name": "em4",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 5,
+                        "id": 25,
+                        "name": "em5",
+                        "port_number": 0
+                    }
+                ],
+                "properties": {
+                    "acpi_shutdown": false,
+                    "adapter_type": "e1000",
+                    "adapters": 6,
+                    "boot_priority": "c",
+                    "console": 5005,
+                    "console_type": "telnet",
+                    "cpu_throttling": 0,
+                    "cpus": 1,
+                    "hda_disk_image": "pfSense-CE-2.3.2-RELEASE-2g-amd64-nanobsd.img",
+                    "hda_disk_image_md5sum": "c91f2c8e287f4930695e65a6793cb8fe",
+                    "hda_disk_interface": "ide",
+                    "hdb_disk_interface": "ide",
+                    "hdc_disk_interface": "ide",
+                    "hdd_disk_interface": "ide",
+                    "legacy_networking": false,
+                    "mac_address": "00:19:ec:d2:0d:00",
+                    "name": "fw_router_lyon",
+                    "options": "-nographic",
+                    "platform": "x86_64",
+                    "process_priority": "normal",
+                    "qemu_path": "/usr/bin/qemu-system-x86_64",
+                    "ram": 2048
+                },
+                "server_id": 1,
+                "symbol": ":/symbols/firewall.svg",
+                "type": "QemuVM",
+                "vm_id": "6ecea46c-7676-4066-8a2f-c78ace1cd20d",
+                "x": 77.0,
+                "y": 422.0
+            },
+            {
+                "description": "Ethernet hub",
+                "device_id": "65bd139a-e458-41ca-8d21-7f7d8118f920",
+                "id": 6,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "hub_internet",
+                    "x": -14.84375,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "description": "connected to Internet on port nio_tap:tap0",
+                        "id": 26,
+                        "link_id": 1,
+                        "name": "1",
+                        "nio": "NIO_TAP",
+                        "port_number": 1
+                    },
+                    {
+                        "description": "connected to fw_router_lesquin on port em0",
+                        "id": 34,
+                        "link_id": 2,
+                        "name": "2",
+                        "nio": "NIO_UDP",
+                        "port_number": 2
+                    },
+                    {
+                        "id": 35,
+                        "name": "3",
+                        "port_number": 3
+                    },
+                    {
+                        "id": 36,
+                        "name": "4",
+                        "port_number": 4
+                    },
+                    {
+                        "id": 37,
+                        "name": "5",
+                        "port_number": 5
+                    },
+                    {
+                        "id": 38,
+                        "name": "6",
+                        "port_number": 6
+                    },
+                    {
+                        "id": 39,
+                        "name": "7",
+                        "port_number": 7
+                    },
+                    {
+                        "id": 40,
+                        "name": "8",
+                        "port_number": 8
+                    }
+                ],
+                "properties": {
+                    "name": "hub_internet"
+                },
+                "server_id": 1,
+                "type": "EthernetHub",
+                "x": 117.0,
+                "y": 254.0
+            },
+            {
+                "description": "Ethernet switch",
+                "device_id": "6b989310-c58f-432e-9f25-790296cd1d9b",
+                "id": 7,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "sw_administratif",
+                    "x": -29.1953125,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "description": "connected to fw_router_lesquin on port em1",
+                        "id": 45,
+                        "link_id": 10,
+                        "name": "1",
+                        "nio": "NIO_UDP",
+                        "port_number": 1,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "description": "connected to pc_directeurlesquin on port Ethernet0",
+                        "id": 46,
+                        "link_id": 6,
+                        "name": "2",
+                        "nio": "NIO_UDP",
+                        "port_number": 2,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 47,
+                        "name": "3",
+                        "port_number": 3,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 48,
+                        "name": "4",
+                        "port_number": 4,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 49,
+                        "name": "5",
+                        "port_number": 5,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 50,
+                        "name": "6",
+                        "port_number": 6,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 51,
+                        "name": "7",
+                        "port_number": 7,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "description": "connected to MAINTENANCE_PFSENSE on port 1",
+                        "id": 52,
+                        "link_id": 9,
+                        "name": "8",
+                        "nio": "NIO_UDP",
+                        "port_number": 8,
+                        "type": "access",
+                        "vlan": 1
+                    }
+                ],
+                "properties": {
+                    "name": "sw_administratif"
+                },
+                "server_id": 1,
+                "type": "EthernetSwitch",
+                "x": -273.5,
+                "y": 78.0
+            },
+            {
+                "description": "Ethernet switch",
+                "device_id": "7ba6991e-6ca2-4a12-999a-1f76012d5e5d",
+                "id": 8,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "sw_production",
+                    "x": -21.46875,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "description": "connected to fw_router_lesquin on port em2",
+                        "id": 53,
+                        "link_id": 4,
+                        "name": "1",
+                        "nio": "NIO_UDP",
+                        "port_number": 1,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 54,
+                        "name": "2",
+                        "port_number": 2,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 55,
+                        "name": "3",
+                        "port_number": 3,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 56,
+                        "name": "4",
+                        "port_number": 4,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 57,
+                        "name": "5",
+                        "port_number": 5,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 58,
+                        "name": "6",
+                        "port_number": 6,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 59,
+                        "name": "7",
+                        "port_number": 7,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 60,
+                        "name": "8",
+                        "port_number": 8,
+                        "type": "access",
+                        "vlan": 1
+                    }
+                ],
+                "properties": {
+                    "name": "sw_production"
+                },
+                "server_id": 1,
+                "type": "EthernetSwitch",
+                "x": -208.5,
+                "y": -9.0
+            },
+            {
+                "description": "Ethernet switch",
+                "device_id": "cacca9fa-ca63-4919-af81-6ba47b11ac6b",
+                "id": 9,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "sw_partenaires",
+                    "x": -24.0703125,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "description": "connected to fw_router_lesquin on port em3",
+                        "id": 61,
+                        "link_id": 5,
+                        "name": "1",
+                        "nio": "NIO_UDP",
+                        "port_number": 1,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 62,
+                        "name": "2",
+                        "port_number": 2,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 63,
+                        "name": "3",
+                        "port_number": 3,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 64,
+                        "name": "4",
+                        "port_number": 4,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 65,
+                        "name": "5",
+                        "port_number": 5,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 66,
+                        "name": "6",
+                        "port_number": 6,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 67,
+                        "name": "7",
+                        "port_number": 7,
+                        "type": "access",
+                        "vlan": 1
+                    },
+                    {
+                        "id": 68,
+                        "name": "8",
+                        "port_number": 8,
+                        "type": "access",
+                        "vlan": 1
+                    }
+                ],
+                "properties": {
+                    "name": "sw_partenaires"
+                },
+                "server_id": 1,
+                "type": "EthernetSwitch",
+                "x": -66.5,
+                "y": -27.0
+            },
+            {
+                "description": "VPCS device",
+                "id": 10,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "pc_directeurlesquin",
+                    "x": -43.546875,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "adapter_number": 0,
+                        "description": "connected to sw_administratif on port 2",
+                        "id": 69,
+                        "link_id": 6,
+                        "name": "Ethernet0",
+                        "nio": "NIO_UDP",
+                        "port_number": 0
+                    }
+                ],
+                "properties": {
+                    "console": 5006,
+                    "name": "pc_directeurlesquin",
+                    "startup_script_path": "startup.vpc"
+                },
+                "server_id": 1,
+                "symbol": ":/symbols/vpcs_guest.svg",
+                "type": "VPCSDevice",
+                "vm_id": "cf83156d-c3b7-4861-ba75-60acdc3f894d",
+                "x": -418.5,
+                "y": 54.5
+            },
+            {
+                "description": "Ethernet hub",
+                "device_id": "55259a81-4b7a-4c96-aeed-bbc0ace265cc",
+                "id": 11,
+                "label": {
+                    "color": "#ff000000",
+                    "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                    "text": "MAINTENANCE_PFSENSE",
+                    "x": -57.421875,
+                    "y": -25.0
+                },
+                "ports": [
+                    {
+                        "description": "connected to sw_administratif on port 8",
+                        "id": 70,
+                        "link_id": 9,
+                        "name": "1",
+                        "nio": "NIO_UDP",
+                        "port_number": 1
+                    },
+                    {
+                        "description": "connected to Internet on port nio_tap:tap1",
+                        "id": 71,
+                        "link_id": 8,
+                        "name": "2",
+                        "nio": "NIO_TAP",
+                        "port_number": 2
+                    },
+                    {
+                        "id": 72,
+                        "name": "3",
+                        "port_number": 3
+                    },
+                    {
+                        "id": 73,
+                        "name": "4",
+                        "port_number": 4
+                    },
+                    {
+                        "id": 74,
+                        "name": "5",
+                        "port_number": 5
+                    },
+                    {
+                        "id": 75,
+                        "name": "6",
+                        "port_number": 6
+                    },
+                    {
+                        "id": 76,
+                        "name": "7",
+                        "port_number": 7
+                    },
+                    {
+                        "id": 77,
+                        "name": "8",
+                        "port_number": 8
+                    }
+                ],
+                "properties": {
+                    "name": "MAINTENANCE_PFSENSE"
+                },
+                "server_id": 1,
+                "type": "EthernetHub",
+                "x": -303.0,
+                "y": 229.0
+            }
+        ],
+        "notes": [
+            {
+                "color": "#ff000000",
+                "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                "text": "Lesquin",
+                "x": -433.0,
+                "y": -128.5
+            },
+            {
+                "color": "#ff000000",
+                "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                "text": "Rennes",
+                "x": -357.0,
+                "y": 363.5
+            },
+            {
+                "color": "#ff000000",
+                "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                "text": "Lyon",
+                "x": 47.0,
+                "y": 364.5
+            },
+            {
+                "color": "#ff000000",
+                "font": "TypeWriter,10,-1,5,75,0,0,0,0,0",
+                "text": "Datacenter",
+                "x": 36.0,
+                "y": -128.5
+            }
+        ],
+        "rectangles": [
+            {
+                "height": 240.0,
+                "width": 453.0,
+                "x": -428.0,
+                "y": -104.0
+            },
+            {
+                "height": 288.0,
+                "width": 367.0,
+                "x": -353.0,
+                "y": 387.0
+            },
+            {
+                "height": 286.0,
+                "width": 413.0,
+                "x": 48.0,
+                "y": 389.0
+            },
+            {
+                "height": 241.0,
+                "width": 412.0,
+                "x": 37.0,
+                "y": -104.0
+            }
+        ],
+        "servers": [
+            {
+                "host": "163.172.205.59",
+                "id": 1,
+                "local": false,
+                "port": 3080,
+                "protocol": "http",
+                "user": "oss",
+                "vm": false
+            }
+        ]
+    },
+    "type": "topology",
+    "version": "1.5.2"
+}
